@@ -56,3 +56,6 @@ docs/_build/
 
 # OSX files
 .DS_Store
+
+# Project stuff
+example_project/db.sqlite3
