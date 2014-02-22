@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'example_project.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^', include('django_dropzone_field.urls', namespace='django_dropzone_field')),
     url(r'^admin/', include(admin.site.urls)),
 )
