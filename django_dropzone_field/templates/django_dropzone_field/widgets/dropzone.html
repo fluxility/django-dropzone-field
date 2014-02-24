@@ -1,5 +1,8 @@
-{% load i18n %}
+{% load i18n thumbnail %}
 <div class="dropzone-field">
-    <img src="{{ object.url }}">
+    {% if object %}
+        {% trans "Current" %}
+        <img src="{% thumbnail object 100x100 crop %}">
+    {% endif %}
     <button type="button">{% trans "Upload new file" %}</button>
 </div>

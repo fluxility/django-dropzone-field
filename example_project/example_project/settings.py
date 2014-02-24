@@ -41,6 +41,8 @@ INSTALLED_APPS = (
 
     'example_app',
     'django_dropzone_field',
+
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,4 +86,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+MEDIA_ROOT = BASE_DIR + "/media/"
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
