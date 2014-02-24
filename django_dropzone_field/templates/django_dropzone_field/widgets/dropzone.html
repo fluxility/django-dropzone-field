@@ -2,7 +2,13 @@
 <div class="dropzone-field">
     {% if object %}
         {% trans "Current" %}
-        <img src="{% thumbnail object 100x100 crop %}">
+        {% thumbnail object 100x100 crop as thumbnail_url %}
+        {% if thumbnail_url %}
+            <img src="{{ thumbnail_url }}"/>
+        {% else %}
+            <a href="{{ object.url }}">{{ object.url }}</a>
+        {% endif %}
+
     {% endif %}
     <button type="button">{% trans "Upload new file" %}</button>
 </div>
