@@ -8,7 +8,7 @@
     {% if upload %}
         <div class="dz-preview dz-earlier-upload">
             <div class="dz-details">
-                <div class="dz-filename"><span data-dz-name="">upload.url</span></div>
+                <div class="dz-filename"><span data-dz-name="">{{ upload.file.name|basename }}</span></div>
                 {{ upload|file_reference }}
             </div>
         </div>

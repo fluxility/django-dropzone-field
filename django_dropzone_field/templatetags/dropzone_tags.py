@@ -1,4 +1,5 @@
-from django.template.defaultfilters import register
+import os
+from django.template.defaultfilters import register, stringfilter
 from django.utils.safestring import mark_safe
 from easy_thumbnails.exceptions import InvalidImageFormatError
 from easy_thumbnails.files import get_thumbnailer
@@ -27,3 +28,8 @@ def file_reference(value, width=100, height=100):
         value = """<a href="%s">%s</a>""" % (value.url, value.url)
 
     return mark_safe(value)
+
+@register.filter(name='basename')
+@stringfilter
+def basename(value):
+    return os.path.basename(value)
