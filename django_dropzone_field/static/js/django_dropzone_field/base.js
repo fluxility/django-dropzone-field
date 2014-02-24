@@ -10,7 +10,8 @@
         $(".dropzone-field").each(function () {
             var el = $(this),
                 csrf_token = el.parents("form").find("input[name=csrfmiddlewaretoken]").val(),
-                input_field = el.prev();
+                input_field = el.prev(),
+                earlier_upload = el.find(".dz-earlier-upload");
 
             $(this).dropzone({
                 "clickable": "button",
@@ -29,6 +30,8 @@
                         var file = this.files[i];
                         this.removeFile(file);
                     }
+
+                    earlier_upload.remove();
                 },
 
                 /**

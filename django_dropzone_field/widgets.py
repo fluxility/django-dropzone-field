@@ -1,4 +1,4 @@
-from django.forms import HiddenInput
+from django.forms import HiddenInput, TextInput
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
@@ -7,9 +7,19 @@ DROPZONEJS_VERSION = '3.8.2'
 
 class DropzoneWidget(HiddenInput):
     def render(self, name, value, attrs=None):
-        response = super(DropzoneWidget, self).render(name, "", attrs)
+        if len(value) is 2:
+            object = value[0]
+            upload_hash = value[1].hash
+            upload_file = value[1].file
+        else:
+            object = value
+            upload_hash = None
+            upload_file = None
+
+        response = super(DropzoneWidget, self).render(name, upload_hash, attrs)
         response += render_to_string('django_dropzone_field/widgets/dropzone.html', {
-            'object': value
+            'object': object,
+            'upload': upload_file
         })
 
         return mark_safe(response)

@@ -5,4 +5,12 @@
         {{ object|file_reference }}
     {% endif %}
     <button type="button">{% trans "Upload new file" %}</button>
+    {% if upload %}
+        <div class="dz-preview dz-earlier-upload">
+            <div class="dz-details">
+                <div class="dz-filename"><span data-dz-name="">upload.url</span></div>
+                {{ upload|file_reference }}
+            </div>
+        </div>
+    {% endif %}
 </div>

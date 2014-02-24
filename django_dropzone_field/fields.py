@@ -12,8 +12,16 @@ class DropzoneField(FileField):
         if data in self.empty_values:
             return initial
 
-        return super(DropzoneField, self).bound_data(data, initial)
+        return initial, self.get_temporary_upload(data)
 
+    @staticmethod
+    def get_temporary_upload(value):
+        try:
+            return TemporaryUpload.objects.get(hash=value)
+        except TemporaryUpload.DoesNotExist:
+            raise ValidationError("Selected image does not exist")
+
+        return None
 
     def clean(self, data, initial=None):
         return super(DropzoneField, self).clean(data, initial)
@@ -22,12 +30,10 @@ class DropzoneField(FileField):
         if value in self.empty_values:
             return None
 
-        try:
-            upload = TemporaryUpload.objects.get(hash=value)
-            file_object = File(upload.file)
-            return file_object
-        except TemporaryUpload.DoesNotExist:
-            raise ValidationError("Selected image does not exist")
+        upload = self.get_temporary_upload(value)
+        file_object = File(upload.file)
+        return file_object
+
 
 
 

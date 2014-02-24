@@ -17,7 +17,8 @@ def file_reference(value, width=100, height=100):
     """
     try:
         options = {
-            'size': (width, height)
+            'size': (width, height),
+            'crop': True
         }
         url = get_thumbnailer(value).get_thumbnail(options).url
 
