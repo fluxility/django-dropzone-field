@@ -7,7 +7,7 @@ DROPZONEJS_VERSION = '3.8.2'
 
 class DropzoneWidget(HiddenInput):
     def render(self, name, value, attrs=None):
-        response = super(DropzoneWidget, self).render(name, value, attrs)
+        response = super(DropzoneWidget, self).render(name, "", attrs)
         response += render_to_string('django_dropzone_field/widgets/dropzone.html')
 
         return mark_safe(response)
