@@ -1,14 +1,8 @@
-{% load i18n thumbnail %}
+{% load i18n dropzone_tags thumbnail %}
 <div class="dropzone-field">
     {% if object %}
         {% trans "Current" %}
-        {% thumbnail object 100x100 crop as thumbnail_url %}
-        {% if thumbnail_url %}
-            <img src="{{ thumbnail_url }}"/>
-        {% else %}
-            <a href="{{ object.url }}">{{ object.url }}</a>
-        {% endif %}
-
+        {{ object|file_reference }}
     {% endif %}
     <button type="button">{% trans "Upload new file" %}</button>
 </div>
