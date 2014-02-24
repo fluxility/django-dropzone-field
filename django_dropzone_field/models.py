@@ -6,6 +6,7 @@ from django.db import models
 class TemporaryUpload(models.Model):
     file = models.FileField(upload_to="temporary_upload")
     hash = models.CharField(max_length=32, editable=False, unique=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def ensure_hash(self):
         if not self.hash:
