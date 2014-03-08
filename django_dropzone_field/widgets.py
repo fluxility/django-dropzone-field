@@ -7,7 +7,7 @@ DROPZONEJS_VERSION = '3.8.2'
 
 class DropzoneWidget(HiddenInput):
     def render(self, name, value, attrs=None):
-        if len(value) is 2:
+        if value and len(value) is 2:
             object = value[0]
             upload_hash = value[1].hash
             upload_file = value[1].file
