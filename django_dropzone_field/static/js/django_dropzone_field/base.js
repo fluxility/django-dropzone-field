@@ -11,10 +11,11 @@
             var el = $(this),
                 csrf_token = el.parents("form").find("input[name=csrfmiddlewaretoken]").val(),
                 input_field = el.prev(),
-                earlier_upload = el.find(".dz-earlier-upload");
+                earlier_upload = el.find(".dz-earlier-upload"),
+                clickable = el.find("button")[0];
 
             $(this).dropzone({
-                "clickable": "button",
+                "clickable": clickable,
                 "url": "/temporary-upload/",
                 "maxFiles": 1,
                 "params": {
