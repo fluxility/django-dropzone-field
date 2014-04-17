@@ -10,7 +10,7 @@ class TemporaryUpload(models.Model):
 
     def ensure_hash(self):
         if not self.hash:
-            self.hash = uuid.uuid4()
+            self.hash = uuid.uuid4().hex
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.ensure_hash()
