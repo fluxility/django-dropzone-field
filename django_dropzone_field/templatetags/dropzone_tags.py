@@ -24,7 +24,7 @@ def file_reference(value, width=100, height=100):
         url = get_thumbnailer(value).get_thumbnail(options).url
 
         value = """<img src="%s">""" % url
-    except InvalidImageFormatError:
+    except (InvalidImageFormatError, IOError):
         value = """<a href="%s">%s</a>""" % (value.url, value.url)
 
     return mark_safe(value)
